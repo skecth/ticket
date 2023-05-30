@@ -14,4 +14,15 @@
     <%= event.event_date %>
   </p>
 
+  <strong>Ticket:</strong>
+    <ul>
+      <% event.tickets.each do |ticket| %>
+        <li>
+          <%= ticket.title %>
+          RM <%= ticket.price %>
+          <%= link_to "See More", ticket %>
+        </li>
+      <% end %>
+    </ul>
+
 </div>
