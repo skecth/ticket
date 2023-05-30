@@ -1,0 +1,50 @@
+<%= form_with(model: event, data:{
+  controller: "nested-form",
+  nested_form_target: "nested-form.form", 
+  nested_form_wrapper_selector_value: ".nested-form-wrapper"  
+}) do |form| %>
+  <% if event.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
+
+      <ul>
+        <% event.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :title, style: "display: block" %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :description, style: "display: block" %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div>
+    <%= form.label :event_date, style: "display: block" %>
+    <%= form.date_field :event_date %>
+  </div>
+
+  <%# Start Custom Logic Here %>
+  <template data-nested-form-target="template">
+    <%= form.fields_for :tickets, Ticket.new, child_index: 'NEW_RECORD' do |ticket_fields| %>
+      <%= render "events/event_ticket_form", f: ticket_fields %>
+    <% end %>
+  </template>
+  <%= form.fields_for :tickets do |ticket_fields| %>
+    <%= render "events/event_ticket_form", f: ticket_fields %>
+  <% end %>
+  <!-- Inserted elements will be injected before that target. -->
+  <div data-nested-form-target="target"></div>
+  <button type="button" data-action="nested-form#add">Add ticket</button>
+  <%# End Custom Logic Here%>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
