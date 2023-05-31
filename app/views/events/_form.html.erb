@@ -14,10 +14,14 @@
       </ul>
     </div>
   <% end %>
-
-  <div>
-    <%= form.label :Event_Image, style: "display: block" %>
-    <%= form.text_field :poster %>
+  <br>
+  <h4>Event Details</h4>
+  <%= form.label :Event_Poster, style: "display: block" %>
+  <div class="form-control" style="background-color:#e9eef1; padding-left:450px">
+    <label>
+      <%= form.file_field :poster, id: "file" %>
+      <img src="https://getstamped.co.uk/wp-content/uploads/WebsiteAssets/Placeholder.jpg" width="230px" >
+    </label>
   </div>
   <br>
   <div>
@@ -58,14 +62,16 @@
   <br>
   <!-- category and subcategory -->
   <div class="row">
+  
     <div class="col">
       <%= form.label :Category %>
-      <%= form.select :category, ["Entertainments", "Sports", "Educations"], include_blank: true, class: "form-select" %>
+      <%= form.select :category, [" ", "Entertainmnets", "Sports", "Educations"], { wrapper: { class: 'has-warning', data: { foo: 'bar' } } }, { class: "form-select" } %>
     </div>
     <div class="col">
       <%= form.label :Subcategory %>
-      <%= form.select :subcategory, ["Music", "Movie", "Dance", "Cricket", "Football", "Basketball", "Tennis", "Badminton", "Table Tennis", "Chess", "School", "College", "University"], include_blank: true, class: "form-select" %>
+      <%= form.select :subcategory, [" ", "Music", "Movie", "Dance", "Cricket", "Football", "Basketball", "Tennis", "Badminton", "Table Tennis", "Chess", "School", "College", "University"], { wrapper: { class: 'has-warning', data: { foo: 'bar' } } }, { class: "form-select" } %>
     </div>
+
   </div>
   <!-- category and subcategory -->
   <br>
@@ -74,7 +80,8 @@
     <%= form.text_field :location, class: "form-control" %>
   </div>
 
-
+  <hr class="solid">
+  <h4>Tickets</h4>
 
   <%# Start Custom Logic Here %>
   <template data-nested-form-target="template">
@@ -87,9 +94,10 @@
   <% end %>
   <!-- Inserted elements will be injected before that target. -->
   <div data-nested-form-target="target"></div>
-  <button type="button" data-action="nested-form#add">Add ticket</button>
+  <p></p>
+  <button type="button" data-action="nested-form#add" class="btn btn-outline-primary btn-sm">Add more ticket type</button>
   <%# End Custom Logic Here%>
-
+  <br><br>
   <div>
     <%= form.submit %>
   </div>
