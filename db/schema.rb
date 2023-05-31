@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_31_025020) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_31_085531) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -27,6 +27,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_31_025020) do
     t.string "category"
     t.string "subcategory"
     t.string "location"
+    t.bigint "organizer_id", null: false
+    t.index ["organizer_id"], name: "index_events_on_organizer_id"
   end
 
   create_table "organizers", force: :cascade do |t|
@@ -50,5 +52,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_31_025020) do
     t.index ["event_id"], name: "index_tickets_on_event_id"
   end
 
+  add_foreign_key "events", "organizers"
   add_foreign_key "tickets", "events"
 end

@@ -58,6 +58,12 @@ class EventsController < ApplicationController
     end
   end
 
+  def organizer_events
+    #@events = Event.where(organizer_id: current_organizer.id)
+    @events = current_organizer.events
+    #@evets = Event.all
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_event
@@ -66,6 +72,6 @@ class EventsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def event_params
-      params.require(:event).permit(:title,:poster, :description, :event_date, :end_date, :start_time, :end_time, :category, :subcategory, :location, tickets_attributes: [:id, :title, :price, :_destroy])
+      params.require(:event).permit(:title,:poster, :description, :event_date, :end_date, :start_time, :end_time, :category, :subcategory, :location, :organizer_id, tickets_attributes: [:id, :title, :price, :_destroy])
     end
 end

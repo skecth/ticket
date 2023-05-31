@@ -78,6 +78,9 @@
     <%= form.label :Venue, style: "display: block" %>
     <%= form.text_field :location, class: "form-control" %>
   </div>
+  <div>
+    <%= form.number_field :organizer_id, class:"form-control", value: current_organizer.id, type: :hidden %>
+  </div>
 
   <hr class="solid">
   <h4>Tickets</h4>
