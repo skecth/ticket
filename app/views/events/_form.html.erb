@@ -16,19 +16,65 @@
   <% end %>
 
   <div>
-    <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
+    <%= form.label :Event_Image, style: "display: block" %>
+    <%= form.text_field :poster %>
+  </div>
+  <br>
+  <div>
+    <%= form.label :Event_Name, style: "display: block" %>
+    <%= form.text_field :title, class: "form-control" %>
+  </div>
+  <br>
+  <div>
+    <%= form.label :Description, style: "display: block" %>
+    <%= form.text_area :description, class: "form-control" %>
+  </div>
+  <br>
+  <!-- date -->
+  <div class="row">
+    <div class="col">
+      <%= form.label :start_date %>
+      <%= form.date_field :event_date, class: "form-control" %>
+    </div>
+    <div class="col">
+      <%= form.label :end_date%>
+      <%= form.date_field :end_date, class: "form-control" %>
+    </div>
+  </div>
+  <!-- date -->
+  <br>
+  <!-- time -->
+  <div class="row">
+    <div class="col">
+      <%= form.label :start_time %>
+      <%= form.time_field :start_time, class: "form-control" %>
+    </div>
+    <div class="col">
+      <%= form.label :end_time%>
+      <%= form.time_field :end_time, class: "form-control" %>
+    </div>
+  </div>
+  <!-- time --> 
+  <br>
+  <!-- category and subcategory -->
+  <div class="row">
+    <div class="col">
+      <%= form.label :Category %>
+      <%= form.select :category, ["Entertainments", "Sports", "Educations"], include_blank: true, class: "form-select" %>
+    </div>
+    <div class="col">
+      <%= form.label :Subcategory %>
+      <%= form.select :subcategory, ["Music", "Movie", "Dance", "Cricket", "Football", "Basketball", "Tennis", "Badminton", "Table Tennis", "Chess", "School", "College", "University"], include_blank: true, class: "form-select" %>
+    </div>
+  </div>
+  <!-- category and subcategory -->
+  <br>
+  <div>
+    <%= form.label :Venue, style: "display: block" %>
+    <%= form.text_field :location, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_area :description %>
-  </div>
 
-  <div>
-    <%= form.label :event_date, style: "display: block" %>
-    <%= form.date_field :event_date %>
-  </div>
 
   <%# Start Custom Logic Here %>
   <template data-nested-form-target="template">
