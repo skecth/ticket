@@ -1,17 +1,22 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Events</h1>
+<h2>Events</h2>
 
 <div class="row row-cols-1 row-cols-md-3 g-4">
   <% @events.each do |event| %>
     <div class="col">
       <div class="card h-100">
-        <%= image_tag event.poster_url, class:"card-img-top" %>
+        <div style="height:300px; background-color:black;">
+        <%= image_tag event.poster_url, class:"card-img-top", style:"width:100%; height:100%" %>
+        </div>
         <div class="card-body">
           <h5 class="card-title"><%= link_to event.title, event %></h5>
           <p class="card-text"><%= event.location %></p>
-          <p class="card-text"><%= event.event_date.strftime("%d %B %Y")  %></p>
-          <p class="card-text"><%= event.start_time %> - <%= event.end_time %></p>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+          <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+          </svg>
+          <p class="card-text d-inline"><%= event.event_date.strftime("%d %B %Y")  %></p>
+        
         </div>
       </div>
     </div>

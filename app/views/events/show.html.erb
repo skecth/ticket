@@ -2,9 +2,13 @@
 
 <%= render @event %>
 
+<% if organizer_signed_in? %>
 <div>
   <%= link_to "Edit this event", edit_event_path(@event) %> |
   <%= link_to "Back to events", events_path %>
 
   <%= button_to "Destroy this event", @event, method: :delete %>
 </div>
+<% else %>
+  <%= link_to "Purchase ticket", events_path %>
+<% end %>
