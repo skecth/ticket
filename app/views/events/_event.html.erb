@@ -46,16 +46,37 @@
     <%= event.location %>
   </p>
 
-  <strong>Ticket:</strong>
-    <ul>
-      <% event.tickets.each do |ticket| %>
-        <li>
-          <%= ticket.title %>
-          RM <%= ticket.price %>
-          <%= link_to "See More", ticket %>
-        </li>
-      <% end %>
-    </ul>
+  <p>
+     <strong>Ticket:</strong>
+
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Type</th>
+      <th scope="col">Price</th>
+      <th colspan="2">Qty</th>
+
+
+    </tr>
+  </thead>
+  <tbody>
+  <% @event.tickets.each do |ticket| %>
+      <tr>
+        <td><%= ticket.title %></td>
+        <td>RM <%= ticket.price %></td>
+
+        <td>
+          <%= simple_form_for @order_ticket do |f| %>
+            <%= f.hidden_field :ticket_id, :value => ticket.id %>
+            <%= f.number_field :quantity, :value => 1, :min => 1 %>
+            <%= f.submit "Add to Cart", class: "btn btn-primary" %>
+          <% end %>
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+  </p>
 
 </div>
 
