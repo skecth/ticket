@@ -2,11 +2,18 @@
 
 <h1>Events</h1>
 
-<div id="events">
+<div class="row row-cols-1 row-cols-md-3 g-4">
   <% @events.each do |event| %>
-    <%= render event %>
-    <p>
-      <%= link_to "Show this event", event %>
-    </p>
+    <div class="col">
+      <div class="card h-100">
+        <%= image_tag event.poster_url, class:"card-img-top" %>
+        <div class="card-body">
+          <h5 class="card-title"><%= link_to event.title, event %></h5>
+          <p class="card-text"><%= event.location %></p>
+          <p class="card-text"><%= event.event_date.strftime("%d %B %Y")  %></p>
+          <p class="card-text"><%= event.start_time %> - <%= event.end_time %></p>
+        </div>
+      </div>
+    </div>
   <% end %>
 </div>

@@ -27,7 +27,7 @@
     <!-- Collapsible wrapper -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <!-- Navbar brand -->
-      <a class="navbar-brand mt-2 mt-lg-0" href="">
+      <a class="navbar-brand mt-2 mt-lg-0" href="<%= root_path %>">
         <img
           src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp"
           height="15"
@@ -49,7 +49,8 @@
             <a class="nav-link" href="#" style="color:white">Dashboard</a>
           </li>
           <li class="nav-item">
-            <%= link_to 'Event', events_path, class:"nav-link" %>
+            
+            <a href="<%= events_path %>" class="nav-link" style="color:white">Event</a>
           </li>
           <% end %>
       </ul>
