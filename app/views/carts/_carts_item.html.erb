@@ -1,0 +1,18 @@
+<h1>Carts#show</h1>
+<p>Find me in app/views/carts/show.html.erb</p>
+
+<% @order_tickets.each do |item| %>
+  <%= item.ticket.event.title %>
+  <%= item.ticket.title %>
+  <%= item.ticket.price %>
+
+  <%= simple_form_for item, remote: true do |f| %>
+    <%= f.hidden_field :ticket_id, value: item.ticket.id %>
+    <%= f.number_field :quantity, value: item.quantity.to_i %>
+    <%= f.submit "Update Cart" %>
+    
+  <% end %>
+  <h4>Subtotal: RM<%= item.total %></h4>
+<% end %>
+    
+<h3>Your total is: RM<%= current_order.subtotal %></h3>
