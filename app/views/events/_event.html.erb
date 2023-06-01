@@ -63,7 +63,7 @@
   <% @event.tickets.each do |ticket| %>
       <tr>
         <td><%= ticket.title %></td>
-        <td>RM <%= ticket.price %></td>
+        <td><%= number_to_currency(ticket.price) %></td>
 
         <td>
           <%= simple_form_for @order_ticket do |f| %>
