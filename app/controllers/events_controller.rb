@@ -4,7 +4,6 @@ class EventsController < ApplicationController
   # GET /events or /events.json
   def index
     @events = Event.all
-    @tickets = Ticket.group(:event_id)
   end
 
   # GET /events/1 or /events/1.json
