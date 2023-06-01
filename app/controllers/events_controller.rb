@@ -5,7 +5,6 @@ class EventsController < ApplicationController
   def index
     @events = Event.all
     @tickets = Ticket.group(:event_id)
-    @order_ticket = current_order.order_tickets.new
   end
 
   # GET /events/1 or /events/1.json
