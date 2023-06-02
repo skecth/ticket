@@ -1,10 +1,20 @@
 class EventsController < ApplicationController
   before_action :set_event, only: %i[ show edit update destroy ]
+  before_action :set_organizer, only: %i[ organizer_events ]
 
   # GET /events or /events.json
   def index
     @events = Event.all
     @tickets = Ticket.group(:event_id)
+    # sort by event date ascending
+    if params[:sort_by] == "date"
+     @events = @events.sort_by(&:event_date)
+    # sort by event ticket minimum price ascending
+    elsif params[:sort_by] == "price"
+      @events = @events.sort_by { |e| e.tickets.minimum(:price) }
+    else
+      @events = Event.all  
+    end
   end
 
   # GET /events/1 or /events/1.json
@@ -63,15 +73,19 @@ class EventsController < ApplicationController
   end
 
   def organizer_events
-    #@events = Event.where(organizer_id: current_organizer.id)
-    @events = current_organizer.events
-    #@evets = Event.all
+    @events = @organizer.events
+    logger.debug "Organizer events: #{@events}"
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_event
       @event = Event.find(params[:id])
+    end
+
+    # get current organizer
+    def set_organizer
+      @organizer = current_organizer
     end
 
     # Only allow a list of trusted parameters through.
