@@ -86,11 +86,11 @@
         </a>
         <% if organizer_signed_in? %>
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
-          <li>
-            <a class="dropdown-item" href="#">My profile</a>
+            <li>
+            <a class="dropdown-item" href="#">Settings</a>
           </li>
           <li>
-            <a class="dropdown-item" href="#">Settings</a>
+            <%=link_to "Profile", edit_organizer_registration_path%>
           </li>
           <li>
             <%= link_to "Logout", destroy_organizer_session_path,  method: :delete, data: { turbo_method: :delete}, class:"nav-link" %>

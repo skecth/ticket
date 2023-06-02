@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_01_033622) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_02_070551) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -48,6 +48,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_01_033622) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "org_profiles", force: :cascade do |t|
+    t.string "org_name"
+    t.string "org_about"
+    t.string "fb"
+    t.string "reg_number"
+    t.text "address"
+    t.string "comp_email"
+    t.string "contact_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "organizer_id", null: false
+    t.index ["organizer_id"], name: "index_org_profiles_on_organizer_id"
+  end
+
   create_table "organizers", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -56,6 +70,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_01_033622) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "about_org"
+    t.string "organization"
+    t.string "fb"
+    t.string "company_profile"
+    t.string "company_reg"
+    t.string "company_address"
+    t.string "company_email"
+    t.string "company_number"
+    t.string "profile_picture"
     t.index ["email"], name: "index_organizers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_organizers_on_reset_password_token", unique: true
   end
@@ -70,5 +93,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_01_033622) do
   end
 
   add_foreign_key "events", "organizers"
+  add_foreign_key "org_profiles", "organizers"
   add_foreign_key "tickets", "events"
 end
