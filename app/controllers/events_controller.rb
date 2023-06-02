@@ -6,15 +6,6 @@ class EventsController < ApplicationController
   def index
     @events = Event.all
     @tickets = Ticket.group(:event_id)
-    # sort by event date ascending
-    if params[:sort_by] == "date"
-     @events = @events.sort_by(&:event_date)
-    # sort by event ticket minimum price ascending
-    elsif params[:sort_by] == "price"
-      @events = @events.sort_by { |e| e.tickets.minimum(:price) }
-    else
-      @events = Event.all  
-    end
   end
 
   # GET /events/1 or /events/1.json
