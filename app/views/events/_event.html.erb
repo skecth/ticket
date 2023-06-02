@@ -1,5 +1,10 @@
 <div id="<%= dom_id event %>">
   <p>
+    <strong>Poster:</strong>
+    <%= image_tag event.poster_url, style:"width:100px; height100px" %>
+  </p>
+
+  <p>
     <strong>Title:</strong>
     <%= event.title %>
   </p>
@@ -13,5 +18,68 @@
     <strong>Event date:</strong>
     <%= event.event_date %>
   </p>
+  <p>
+    <strong>End date:</strong>
+    <%= event.end_date %>
+  </p>
+  <p>
+    <strong>Start time:</strong>
+    <%= event.start_time %>
+  </p>
+
+  <p>
+    <strong>End time:</strong>
+    <%= event.end_time %>
+  </p>
+  <p>
+    <strong>Category:</strong>
+    <%= event.category %>
+  </p>
+
+  <p>
+    <strong>Subcategory:</strong>
+    <%= event.subcategory %>
+  </p>
+
+  <p>
+    <strong>Location:</strong>
+    <%= event.location %>
+  </p>
+
+  <p>
+     <strong>Ticket:</strong>
+
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Type</th>
+      <th scope="col">Price</th>
+      <th colspan="2">Qty</th>
+
+
+    </tr>
+  </thead>
+  <tbody>
+  <% @event.tickets.each do |ticket| %>
+      <tr>
+        <td><%= ticket.title %></td>
+        <td><%= number_to_currency(ticket.price) %></td>
+
+        <td>
+          <%= simple_form_for @order_ticket, remote: true do |f| %>
+            <%= f.hidden_field :ticket_id, :value => ticket.id %>
+            <%= f.number_field :quantity %>
+            <%= f.submit "Add to Cart", class: "btn btn-primary" %>
+          <% end %>
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+  </p>
 
 </div>
+
+
+
+

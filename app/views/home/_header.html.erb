@@ -1,0 +1,118 @@
+<!-- kalau organizer sign in
+
+- add event
+- update event
+- delete event
+- organizer event
+- organizer logout
+
+-->
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light " style="background-color:#11375e; color:white">
+  <!-- Container wrapper -->
+  <div class="container-fluid">
+    <!-- Toggle button -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-mdb-toggle="collapse"
+      data-mdb-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Collapsible wrapper -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <!-- Navbar brand -->
+      <a class="navbar-brand mt-2 mt-lg-0" href="<%= root_path %>">
+        <img
+          src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp"
+          height="15"
+          alt="MDB Logo"
+          loading="lazy"
+        />
+      </a>
+      <!-- Left links -->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <% if organizer_signed_in? %> 
+          <li class="nav-item">
+            <%= link_to "Add Event", new_event_path, class:"nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "My Event", my_events_path, class:"nav-link" %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <a class="nav-link" href="#" style="color:white">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            
+            <a href="<%= events_path %>" class="nav-link" style="color:white">Event</a>
+          </li>
+          <% end %>
+      </ul>
+      <!-- Left links -->
+    </div>
+    <!-- Collapsible wrapper -->
+
+    <!-- Right elements -->
+    <div class="d-flex align-items-center">
+      <!-- Icon -->
+      <a class="text-reset me-3" href="#">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="badge rounded-pill badge-notification bg-danger">1</span>
+      </a>
+
+      <!-- Avatar -->
+      <div class="dropdown">
+        <a
+          class="dropdown-toggle d-flex align-items-center hidden-arrow"
+          href="#"
+          id="navbarDropdownMenuAvatar"
+          role="button"
+          data-mdb-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/1250/1250689.png"
+            class="rounded-circle"
+            height="30"
+            alt="Black and White Portrait of a Man"
+            loading="lazy"
+          />
+        </a>
+        <% if organizer_signed_in? %>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
+          <li>
+            <a class="dropdown-item" href="#">My profile</a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="#">Settings</a>
+          </li>
+          <li>
+            <%= link_to "Logout", destroy_organizer_session_path,  method: :delete, data: { turbo_method: :delete}, class:"nav-link" %>
+          </li>
+        </ul>
+        <% else %>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
+          <li>
+            <h6 style="padding-left:13px; text-decoration:underline">User</h6>
+            <%= link_to "Log In", new_organizer_registration_path, class:"dropdown-item" %>
+          </li>      
+          <hr>  
+          <li>
+            <h6 style="padding-left:13px; text-decoration:underline">Organizer</h6>
+            <%= link_to "Log In", new_organizer_session_path, class:"dropdown-item" %>
+          </li>
+        </ul>
+        <% end %>
+      </div>
+    </div>
+    <!-- Right elements -->
+  </div>
+  <!-- Container wrapper -->
+</nav>
+<!-- Navbar -->

@@ -1,8 +1,8 @@
-<h1>New event</h1>
+<h1 style="text-align:center">Create Event</h1>
 
-<%= render "form", event: @event %>
-
-<br>
+<div class="card" style="padding: 25px; background-color: #f0f1eb">
+  <%= render "form", event: @event %>
+</div>
 
 <div>
   <%= link_to "Back to events", events_path %>
